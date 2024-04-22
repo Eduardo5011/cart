@@ -1,10 +1,15 @@
 import { useContext, useReducer, useEffect, createContext } from "react";
+import reducer from "./reducer";
+import {
+  CLEAR_CART,
+  REMOVE,
+  INCREASE,
+  DECREASE,
+  LOADING,
+  DISPLAY_ITEMS,
+} from "./action";
 
 const AppContext = createContext();
-
-const reducer = (state, action) => {
-  return state;
-};
 
 const initialState = {
   loading: false,
@@ -14,7 +19,9 @@ const initialState = {
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  return <AppContext.Provider value={{...state}}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
+  );
 };
 
 export const useGlobalContext = () => {
